@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. task.proto
+
+service TaskService{
+    rpc task_face_recognition(FaceRecognitionRequest)returns(FaceRecognitionReplay){}
+    rpc server_time_delta(FaceRecognitionRequest)returns(FaceRecognitionReplay){}
+}
+
+message FaceRecognitionRequest {
+    int32 sequence = 1;
+    bytes img_orig = 2;
+    string target = 3;
+}
+
+message FaceRecognitionReplay {
+    int32 sequence = 1;
+    bytes img_out = 2;
+    bool success = 3;
+    string arrival_time = 4;
+    string start_handle_time = 5;
+    string end_handle_time = 6;
+}
+
+message TimeDeltaRequest {
+
+}
+
+message TimeDeltaReplay {
+    string arrival_time = 1;
+}
